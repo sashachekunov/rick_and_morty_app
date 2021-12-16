@@ -1,16 +1,17 @@
-# chekunov_rick_and_morty_client
+## Тестовое задание от Digital Oxygen по Flutter
 
-A new Flutter project.
+### Основное задание
+Создать приложение-клиент , которое отображает список персонажей вселенной Рик и Морти. Данные брать по REST API с данного ресурса : https://rickandmortyapi.com/. Создать динамически подгружаемый список персонажей, по клику на каждый элемент – загружается карточка персонажа.
 
-## Getting Started
+### Дополнительное задание
+Использовать данные для создания списков серий,локаций и т.п.
 
-This project is a starting point for a Flutter application.
+### Пример оформления
 
-A few resources to get you started if this is your first Flutter project:
+<p float="left">
+  <img src="assets/images/main_screen.png" width="200" />
+  <img src="assets/images/character_screen.png" width="200" />
+</p>
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### APK выполненного задания
+https://drive.google.com/file/d/1NXtxjlm6I6teAR4AUEsX7v5ZKpSKx2NL/view?usp=sharing
