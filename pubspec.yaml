@@ -30,13 +30,14 @@ dependencies:
   flutter:
     sdk: flutter
 
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
 
   # To compare instances of classes
   equatable: ^2.0.3
+
+  # Functional programming features in Dart
   dartz: ^0.10.1
 
 dev_dependencies:
@@ -55,7 +56,7 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
 
-  # provides a standard way of writing and running tests in Dart.
+  # Provides a standard way of writing and running tests in Dart.
   test: ^1.17.12
 
 # For information on the generic Dart part of this file, see the
