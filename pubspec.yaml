@@ -1,5 +1,5 @@
 name: chekunov_rick_and_morty_client
-description: A new Flutter project.
+description: Test Flutter-app for Digital Oxygen
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -36,6 +36,11 @@ dependencies:
   cupertino_icons: ^1.0.2
 
 dev_dependencies:
+  # Provides API to test Flutter applications that run on real devices and emulators.
+  # flutter_driver:
+  #   sdk: flutter
+
+  # Testing library for flutter, built on top of package:test
   flutter_test:
     sdk: flutter
 
@@ -45,6 +50,9 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
+
+  # provides a standard way of writing and running tests in Dart.
+  test: ^1.17.12
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
