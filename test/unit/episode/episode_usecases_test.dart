@@ -14,7 +14,7 @@ import 'package:test/test.dart';
 import '../../core/episode_inst.dart';
 import '../../core/test_error_impl.dart';
 
-class EpisodeRepositoryImplTest extends EpisodeRepository {
+class EpisodeRepositoryImplTest implements EpisodeRepository {
   @override
   Future<Either<AppError, List<EpisodeEntity>>> getAllEpisodes() async {
     return Right([pilot, lawnmowerDog]);

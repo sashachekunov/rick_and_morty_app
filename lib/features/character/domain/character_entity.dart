@@ -7,8 +7,8 @@ class CharacterEntity extends Equatable {
   final String species;
   final String type;
   final String gender;
-  final Location origin;
-  final Location location;
+  final CharacterLocation origin;
+  final CharacterLocation location;
   final String image;
   final List<String> episode;
   final String url;
@@ -46,11 +46,11 @@ class CharacterEntity extends Equatable {
       ];
 }
 
-class Location {
+class CharacterLocation {
   final String name;
   final String url;
 
-  const Location({
+  const CharacterLocation({
     required this.name,
     required this.url,
   });

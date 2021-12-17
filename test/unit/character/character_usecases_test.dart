@@ -14,7 +14,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../core/character_inst.dart';
 import '../../core/test_error_impl.dart';
 
-class CharacterRepositoryImplTest extends CharacterRepository {
+class CharacterRepositoryImplTest implements CharacterRepository {
   @override
   Future<Either<AppError, List<CharacterEntity>>> getAllCharacters() async {
     return Right([rick, morty]);

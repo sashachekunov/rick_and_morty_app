@@ -14,7 +14,7 @@ import 'package:test/test.dart';
 import '../../core/location_inst.dart';
 import '../../core/test_error_impl.dart';
 
-class LocationRepositoryImplTest extends LocationRepository {
+class LocationRepositoryImplTest implements LocationRepository {
   @override
   Future<Either<AppError, List<LocationEntity>>> getAllLocations() async {
     return Right([earthC137, abadango]);
