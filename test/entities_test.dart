@@ -1,6 +1,6 @@
-import 'package:chekunov_rick_and_morty_client/character/domain/character_entity.dart';
-import 'package:chekunov_rick_and_morty_client/episode/domain/episode_entity.dart';
-import 'package:chekunov_rick_and_morty_client/location/domain/location_entity.dart';
+import 'package:chekunov_rick_and_morty_client/features/character/domain/character_entity.dart';
+import 'package:chekunov_rick_and_morty_client/features/episode/domain/episode_entity.dart';
+import 'package:chekunov_rick_and_morty_client/features/location/domain/location_entity.dart';
 import 'package:test/test.dart';
 
 void main() {
