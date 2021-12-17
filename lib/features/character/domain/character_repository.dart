@@ -6,6 +6,5 @@ import 'package:dartz/dartz.dart';
 abstract class CharacterRepository {
   Future<Either<AppError, CharacterEntity>> getCharacterById(int id);
   Future<Either<AppError, List<CharacterEntity>>> getAllCharacters();
-  Future<Either<AppError, List<CharacterEntity>>> getAllCharactersByPage(
-      int page);
+  Future<Either<AppError, List<CharacterEntity>>> getCharactersByPage(int page);
 }

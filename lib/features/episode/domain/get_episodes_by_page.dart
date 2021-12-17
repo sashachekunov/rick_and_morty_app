@@ -6,13 +6,13 @@ import 'package:chekunov_rick_and_morty_client/features/episode/domain/episode_r
 
 import 'package:dartz/dartz.dart';
 
-class GetAllEpisodesByPage extends UseCase<List<EpisodeEntity>, PageParams> {
+class GetEpisodesByPage extends UseCase<List<EpisodeEntity>, PageParams> {
   final EpisodeRepository _episodeRepository;
 
-  GetAllEpisodesByPage(this._episodeRepository);
+  GetEpisodesByPage(this._episodeRepository);
 
   @override
   Future<Either<AppError, List<EpisodeEntity>>> call(PageParams params) async {
-    return await _episodeRepository.getAllEpisodesByPage(params.page);
+    return await _episodeRepository.getEpisodesByPage(params.page);
   }
 }

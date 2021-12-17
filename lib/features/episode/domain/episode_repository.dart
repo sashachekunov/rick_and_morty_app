@@ -6,5 +6,5 @@ import 'package:dartz/dartz.dart';
 abstract class EpisodeRepository {
   Future<Either<AppError, EpisodeEntity>> getEpisodeById(int id);
   Future<Either<AppError, List<EpisodeEntity>>> getAllEpisodes();
-  Future<Either<AppError, List<EpisodeEntity>>> getAllEpisodesByPage(int page);
+  Future<Either<AppError, List<EpisodeEntity>>> getEpisodesByPage(int page);
 }

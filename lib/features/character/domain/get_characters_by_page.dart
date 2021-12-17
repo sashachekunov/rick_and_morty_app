@@ -6,15 +6,14 @@ import 'package:chekunov_rick_and_morty_client/features/character/domain/charact
 
 import 'package:dartz/dartz.dart';
 
-class GetAllCharactersByPage
-    extends UseCase<List<CharacterEntity>, PageParams> {
+class GetCharactersByPage extends UseCase<List<CharacterEntity>, PageParams> {
   final CharacterRepository _characterRepository;
 
-  GetAllCharactersByPage(this._characterRepository);
+  GetCharactersByPage(this._characterRepository);
 
   @override
   Future<Either<AppError, List<CharacterEntity>>> call(
       PageParams params) async {
-    return await _characterRepository.getAllCharactersByPage(params.page);
+    return await _characterRepository.getCharactersByPage(params.page);
   }
 }

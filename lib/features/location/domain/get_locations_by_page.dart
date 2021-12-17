@@ -6,13 +6,13 @@ import 'package:chekunov_rick_and_morty_client/features/location/domain/location
 
 import 'package:dartz/dartz.dart';
 
-class GetAllLocationsByPage extends UseCase<List<LocationEntity>, PageParams> {
+class GetLocationsByPage extends UseCase<List<LocationEntity>, PageParams> {
   final LocationRepository _locationRepository;
 
-  GetAllLocationsByPage(this._locationRepository);
+  GetLocationsByPage(this._locationRepository);
 
   @override
   Future<Either<AppError, List<LocationEntity>>> call(PageParams params) async {
-    return await _locationRepository.getAllLocationsByPage(params.page);
+    return await _locationRepository.getLocationsByPage(params.page);
   }
 }
