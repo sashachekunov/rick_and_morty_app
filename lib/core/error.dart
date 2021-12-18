@@ -4,3 +4,5 @@ abstract class AppError extends Equatable {
   @override
   List<Object?> get props => [];
 }
+
+class ServerError extends AppError {}

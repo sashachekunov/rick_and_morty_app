@@ -42,7 +42,7 @@ class EpisodeRepositoryImplTest implements EpisodeRepository {
   }
 }
 
-Future<void> main() async {
+void main() {
   test('GetAllEpisodes test', () async {
     // Arrange
     var episodeRepository = EpisodeRepositoryImplTest();

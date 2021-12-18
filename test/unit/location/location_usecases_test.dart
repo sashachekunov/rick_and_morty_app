@@ -23,11 +23,11 @@ class LocationRepositoryImplTest implements LocationRepository {
   @override
   Future<Either<AppError, List<LocationEntity>>> getLocationsByPage(
       int page) async {
-        if (page > 0 && page < 8) {
-          return Right([earthC137, abadango]);
-        } else {
-          return Left(TestError());
-        }
+    if (page > 0 && page < 8) {
+      return Right([earthC137, abadango]);
+    } else {
+      return Left(TestError());
+    }
   }
 
   @override
@@ -42,7 +42,7 @@ class LocationRepositoryImplTest implements LocationRepository {
   }
 }
 
-Future<void> main() async {
+void main() {
   test('GetAllEpisodes test', () async {
     // Arrange
     var locationRepository = LocationRepositoryImplTest();
