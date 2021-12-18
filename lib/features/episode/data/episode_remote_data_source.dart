@@ -7,7 +7,7 @@ import 'dart:convert';
 abstract class EpisodeRemoteDataSource {
   Future<EpisodeModel> getEpisodeById(int id);
   Future<List<EpisodeModel>> getAllEpisodes();
-  Future<List<EpisodeModel>> getEpisodeByPage(int page);
+  Future<List<EpisodeModel>> getEpisodesByPage(int page);
 }
 
 class EpisodeRemoteDataSourceImpl implements EpisodeRemoteDataSource {
@@ -65,7 +65,7 @@ class EpisodeRemoteDataSourceImpl implements EpisodeRemoteDataSource {
   }
 
   @override
-  Future<List<EpisodeModel>> getEpisodeByPage(int page) async {
+  Future<List<EpisodeModel>> getEpisodesByPage(int page) async {
     final response = await client.get(
         Uri.parse(
             'https://rickandmortyapi.com/api/episode/?page=${page.toString()}'),

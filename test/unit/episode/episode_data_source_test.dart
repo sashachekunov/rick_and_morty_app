@@ -112,7 +112,7 @@ void main() {
     var episodeRemoteDataSource = EpisodeRemoteDataSourceImpl(
       client: client,
     );
-    var episodes = await episodeRemoteDataSource.getEpisodeByPage(1);
+    var episodes = await episodeRemoteDataSource.getEpisodesByPage(1);
 
     // Assert
     expect([
