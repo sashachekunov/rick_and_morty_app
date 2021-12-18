@@ -1,8 +1,9 @@
+import 'package:chekunov_rick_and_morty_client/core/error.dart';
 import 'package:chekunov_rick_and_morty_client/core/exception.dart';
 import 'package:chekunov_rick_and_morty_client/features/character/data/character_model.dart';
-import 'package:chekunov_rick_and_morty_client/features/character/data/character_remote_data_source.dart';
-import 'package:chekunov_rick_and_morty_client/core/error.dart';
 import 'package:chekunov_rick_and_morty_client/features/character/domain/character_repository.dart';
+import 'package:chekunov_rick_and_morty_client/features/character/data/character_remote_data_source.dart';
+
 import 'package:dartz/dartz.dart';
 
 class CharacterRepositoryImpl implements CharacterRepository {

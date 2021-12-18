@@ -1,5 +1,6 @@
 import 'package:chekunov_rick_and_morty_client/features/character/data/character_model.dart';
 import 'package:chekunov_rick_and_morty_client/features/character/domain/character_entity.dart';
+
 import 'package:test/test.dart';
 
 void main() {

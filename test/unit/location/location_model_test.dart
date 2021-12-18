@@ -1,4 +1,5 @@
 import 'package:chekunov_rick_and_morty_client/features/location/data/location_model.dart';
+
 import 'package:test/test.dart';
 
 void main() {

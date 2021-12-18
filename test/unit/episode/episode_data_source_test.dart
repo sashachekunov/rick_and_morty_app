@@ -1,9 +1,9 @@
 import 'package:chekunov_rick_and_morty_client/features/episode/data/episode_remote_data_source.dart';
 
 import 'package:test/test.dart';
+import 'package:http/http.dart' as http;
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:http/http.dart' as http;
 
 import '../../core/http_client_mock.mocks.dart';
 
