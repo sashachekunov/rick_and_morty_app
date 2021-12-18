@@ -5,7 +5,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:http/http.dart' as http;
 
-import 'character_data_source_test.mocks.dart';
+import '../../core/http_client_mock.mocks.dart';
 
 @GenerateMocks([http.Client])
 void main() {
