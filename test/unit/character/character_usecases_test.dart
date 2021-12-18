@@ -42,7 +42,7 @@ class CharacterRepositoryImplTest implements CharacterRepository {
   }
 }
 
-Future<void> main() async {
+void main() {
   test('GetAllCharacters test', () async {
     // Arrange
     var characterRepository = CharacterRepositoryImplTest();

@@ -40,6 +40,9 @@ dependencies:
   # Functional programming features in Dart
   dartz: ^0.10.1
 
+  # To make HTTP requests
+  http: ^0.13.4
+
 dev_dependencies:
   # Provides API to test Flutter applications that run on real devices and emulators.
   # flutter_driver:
@@ -58,6 +61,12 @@ dev_dependencies:
 
   # Provides a standard way of writing and running tests in Dart.
   test: ^1.17.12
+
+  # Mock library
+  mockito: ^5.0.16
+
+  # Generator
+  build_runner: ^2.1.7
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
