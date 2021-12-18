@@ -38,7 +38,7 @@ class LocationRemoteDataSourceImpl implements LocationRemoteDataSource {
           'Content-Type': 'application/json',
         });
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200 && totalCountOfLocations > 0) {
       final locations = json.decode(response.body);
       return (locations as List)
           .map((location) => LocationModel.fromJson(location))

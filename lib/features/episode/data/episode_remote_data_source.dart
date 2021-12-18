@@ -38,7 +38,7 @@ class EpisodeRemoteDataSourceImpl implements EpisodeRemoteDataSource {
           'Content-Type': 'application/json',
         });
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200 && totalCountOfEpisodes > 0) {
       final episodes = json.decode(response.body);
       return (episodes as List)
           .map((episode) => EpisodeModel.fromJson(episode))

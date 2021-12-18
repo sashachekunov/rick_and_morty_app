@@ -46,7 +46,7 @@ class CharacterEntity extends Equatable {
       ];
 }
 
-class CharacterLocation {
+class CharacterLocation extends Equatable {
   final String name;
   final String url;
 
@@ -54,4 +54,7 @@ class CharacterLocation {
     required this.name,
     required this.url,
   });
+
+  @override
+  List<Object?> get props => [name, url];
 }
