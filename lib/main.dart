@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'core/rick_and_morty_icon_icons.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -73,7 +75,12 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: const Icon(
+          RickAndMortyIcon.rickAndMorty,
+          color: Colors.black,
+        ),
+        centerTitle: true, //Text(widget.title),
+        // actions: const [Icon(RickAndMortyIcon.rick_and_morty)],
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it

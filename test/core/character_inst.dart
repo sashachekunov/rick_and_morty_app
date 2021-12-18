@@ -7,11 +7,11 @@ var rick = CharacterEntity(
   species: 'Human',
   type: '',
   gender: 'Male',
-  origin: const Location(
+  origin: const CharacterLocation(
     name: 'Earth (C-137)',
     url: 'https://rickandmortyapi.com/api/location/1',
   ),
-  location: const Location(
+  location: const CharacterLocation(
     name: 'Citadel of Ricks',
     url: 'https://rickandmortyapi.com/api/location/3',
   ),
@@ -31,11 +31,11 @@ var morty = CharacterEntity(
   species: 'Human',
   type: '',
   gender: 'Male',
-  origin: const Location(
+  origin: const CharacterLocation(
     name: 'unknown',
     url: '',
   ),
-  location: const Location(
+  location: const CharacterLocation(
     name: 'Citadel of Ricks',
     url: 'https://rickandmortyapi.com/api/location/3',
   ),

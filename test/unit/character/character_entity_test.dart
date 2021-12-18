@@ -3,13 +3,13 @@ import 'package:chekunov_rick_and_morty_client/features/character/domain/charact
 import 'package:test/test.dart';
 
 void main() {
-  test('Location contructor test', () {
+  test('CharacterLocation contructor test', () {
     // Arrange
     var locationName = 'Citadel of Ricks';
     var locationUrl = 'https://rickandmortyapi.com/api/location/3';
 
     // Act
-    var location = Location(name: locationName, url: locationUrl);
+    var location = CharacterLocation(name: locationName, url: locationUrl);
 
     // Assert
     expect(location.name + location.url, locationName + locationUrl);
@@ -23,11 +23,11 @@ void main() {
     var characterSpecies = 'Human';
     var characterType = '';
     var characterGender = 'Male';
-    var characterOrigin = const Location(
+    var characterOrigin = const CharacterLocation(
       name: 'unknown',
       url: '',
     );
-    var characterLocation = const Location(
+    var characterLocation = const CharacterLocation(
       name: 'Citadel of Ricks',
       url: 'https://rickandmortyapi.com/api/location/3',
     );
