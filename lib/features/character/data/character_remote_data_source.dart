@@ -38,7 +38,7 @@ class CharacterRemoteDataSourceImpl implements CharacterRemoteDataSource {
           'Content-Type': 'application/json',
         });
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200 && totalCountOfCharacters > 0) {
       final characters = json.decode(response.body);
       return (characters as List)
           .map((character) => CharacterModel.fromJson(character))
