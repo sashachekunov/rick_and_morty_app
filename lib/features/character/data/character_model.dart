@@ -72,7 +72,7 @@ class CharacterModel extends CharacterEntity {
 }
 
 class CharacterLocationModel extends CharacterLocation {
-  CharacterLocationModel({
+  const CharacterLocationModel({
     name,
     url,
   }) : super(

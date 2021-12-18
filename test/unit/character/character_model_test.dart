@@ -133,11 +133,11 @@ void main() {
     var characterSpecies = 'Human';
     var characterType = '';
     var characterGender = 'Male';
-    var characterOrigin = CharacterLocationModel(
+    var characterOrigin = const CharacterLocationModel(
       name: 'unknown',
       url: '',
     );
-    var characterLocation = CharacterLocationModel(
+    var characterLocation = const CharacterLocationModel(
       name: 'Citadel of Ricks',
       url: 'https://rickandmortyapi.com/api/location/3',
     );
@@ -210,11 +210,11 @@ void main() {
     var characterSpecies = 'Human';
     var characterType = '';
     var characterGender = 'Male';
-    var characterOrigin = CharacterLocationModel(
+    var characterOrigin = const CharacterLocationModel(
       name: 'unknown',
       url: '',
     );
-    var characterLocation = CharacterLocationModel(
+    var characterLocation = const CharacterLocationModel(
       name: 'Citadel of Ricks',
       url: 'https://rickandmortyapi.com/api/location/3',
     );
