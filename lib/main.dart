@@ -6,11 +6,13 @@ import 'core/rick_and_morty_icon_icons.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await get_it.init();
-  runApp(const MyApp());
+  runApp(const RickAndMortyApp(
+    key: Key('RickAndMortyApp'),
+  ));
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class RickAndMortyApp extends StatelessWidget {
+  const RickAndMortyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
