@@ -9,9 +9,7 @@ import 'package:dartz/dartz.dart';
 class CharacterRepositoryImpl implements CharacterRepository {
   final CharacterRemoteDataSource remoteDataSource;
 
-  CharacterRepositoryImpl({
-    required this.remoteDataSource,
-  });
+  CharacterRepositoryImpl({required this.remoteDataSource});
 
   @override
   Future<Either<AppError, List<CharacterModel>>> getAllCharacters() async {

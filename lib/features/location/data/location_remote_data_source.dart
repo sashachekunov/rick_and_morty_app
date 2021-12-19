@@ -17,10 +17,9 @@ class LocationRemoteDataSourceImpl implements LocationRemoteDataSource {
 
   @override
   Future<List<LocationModel>> getAllLocations() async {
-    final preResponse = await client
-        .get(Uri.parse('https://rickandmortyapi.com/api/location/'), headers: {
-      'Content-Type': 'application/json',
-    });
+    final preResponse = await client.get(
+        Uri.parse('https://rickandmortyapi.com/api/location/'),
+        headers: {'Content-Type': 'application/json'});
 
     var totalCountOfLocations = 0;
     if (preResponse.statusCode == 200) {
@@ -34,9 +33,7 @@ class LocationRemoteDataSourceImpl implements LocationRemoteDataSource {
         Uri.parse('https://rickandmortyapi.com/api/location/${[
           for (var i = 1; i <= totalCountOfLocations; ++i) i
         ].join(',')}'),
-        headers: {
-          'Content-Type': 'application/json',
-        });
+        headers: {'Content-Type': 'application/json'});
 
     if (response.statusCode == 200 && totalCountOfLocations > 0) {
       final locations = json.decode(response.body);
@@ -52,9 +49,7 @@ class LocationRemoteDataSourceImpl implements LocationRemoteDataSource {
   Future<LocationModel> getLocationById(int id) async {
     final response = await client.get(
         Uri.parse('https://rickandmortyapi.com/api/location/${id.toString()}'),
-        headers: {
-          'Content-Type': 'application/json',
-        });
+        headers: {'Content-Type': 'application/json'});
 
     if (response.statusCode == 200) {
       final location = json.decode(response.body);
@@ -69,9 +64,7 @@ class LocationRemoteDataSourceImpl implements LocationRemoteDataSource {
     final response = await client.get(
         Uri.parse(
             'https://rickandmortyapi.com/api/location/?page=${page.toString()}'),
-        headers: {
-          'Content-Type': 'application/json',
-        });
+        headers: {'Content-Type': 'application/json'});
 
     if (response.statusCode == 200) {
       final locations = json.decode(response.body);

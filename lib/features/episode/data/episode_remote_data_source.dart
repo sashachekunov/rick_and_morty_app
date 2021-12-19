@@ -17,10 +17,9 @@ class EpisodeRemoteDataSourceImpl implements EpisodeRemoteDataSource {
 
   @override
   Future<List<EpisodeModel>> getAllEpisodes() async {
-    final preResponse = await client
-        .get(Uri.parse('https://rickandmortyapi.com/api/episode/'), headers: {
-      'Content-Type': 'application/json',
-    });
+    final preResponse = await client.get(
+        Uri.parse('https://rickandmortyapi.com/api/episode/'),
+        headers: {'Content-Type': 'application/json'});
 
     var totalCountOfEpisodes = 0;
     if (preResponse.statusCode == 200) {
@@ -34,9 +33,7 @@ class EpisodeRemoteDataSourceImpl implements EpisodeRemoteDataSource {
         Uri.parse('https://rickandmortyapi.com/api/episode/${[
           for (var i = 1; i <= totalCountOfEpisodes; ++i) i
         ].join(',')}'),
-        headers: {
-          'Content-Type': 'application/json',
-        });
+        headers: {'Content-Type': 'application/json'});
 
     if (response.statusCode == 200 && totalCountOfEpisodes > 0) {
       final episodes = json.decode(response.body);
@@ -52,9 +49,7 @@ class EpisodeRemoteDataSourceImpl implements EpisodeRemoteDataSource {
   Future<EpisodeModel> getEpisodeById(int id) async {
     final response = await client.get(
         Uri.parse('https://rickandmortyapi.com/api/episode/${id.toString()}'),
-        headers: {
-          'Content-Type': 'application/json',
-        });
+        headers: {'Content-Type': 'application/json'});
 
     if (response.statusCode == 200) {
       final episode = json.decode(response.body);
@@ -69,9 +64,7 @@ class EpisodeRemoteDataSourceImpl implements EpisodeRemoteDataSource {
     final response = await client.get(
         Uri.parse(
             'https://rickandmortyapi.com/api/episode/?page=${page.toString()}'),
-        headers: {
-          'Content-Type': 'application/json',
-        });
+        headers: {'Content-Type': 'application/json'});
 
     if (response.statusCode == 200) {
       final episodes = json.decode(response.body);

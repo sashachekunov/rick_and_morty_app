@@ -17,10 +17,9 @@ class CharacterRemoteDataSourceImpl implements CharacterRemoteDataSource {
 
   @override
   Future<List<CharacterModel>> getAllCharacters() async {
-    final preResponse = await client
-        .get(Uri.parse('https://rickandmortyapi.com/api/character/'), headers: {
-      'Content-Type': 'application/json',
-    });
+    final preResponse = await client.get(
+        Uri.parse('https://rickandmortyapi.com/api/character/'),
+        headers: {'Content-Type': 'application/json'});
 
     var totalCountOfCharacters = 0;
     if (preResponse.statusCode == 200) {
@@ -34,9 +33,7 @@ class CharacterRemoteDataSourceImpl implements CharacterRemoteDataSource {
         Uri.parse('https://rickandmortyapi.com/api/character/${[
           for (var i = 1; i <= totalCountOfCharacters; ++i) i
         ].join(',')}'),
-        headers: {
-          'Content-Type': 'application/json',
-        });
+        headers: {'Content-Type': 'application/json'});
 
     if (response.statusCode == 200 && totalCountOfCharacters > 0) {
       final characters = json.decode(response.body);
@@ -52,9 +49,7 @@ class CharacterRemoteDataSourceImpl implements CharacterRemoteDataSource {
   Future<CharacterModel> getCharacterById(int id) async {
     final response = await client.get(
         Uri.parse('https://rickandmortyapi.com/api/character/${id.toString()}'),
-        headers: {
-          'Content-Type': 'application/json',
-        });
+        headers: {'Content-Type': 'application/json'});
 
     if (response.statusCode == 200) {
       final character = json.decode(response.body);
@@ -69,9 +64,7 @@ class CharacterRemoteDataSourceImpl implements CharacterRemoteDataSource {
     final response = await client.get(
         Uri.parse(
             'https://rickandmortyapi.com/api/character/?page=${page.toString()}'),
-        headers: {
-          'Content-Type': 'application/json',
-        });
+        headers: {'Content-Type': 'application/json'});
 
     if (response.statusCode == 200) {
       final characters = json.decode(response.body);

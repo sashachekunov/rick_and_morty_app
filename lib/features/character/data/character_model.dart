@@ -72,25 +72,14 @@ class CharacterModel extends CharacterEntity {
 }
 
 class CharacterLocationModel extends CharacterLocation {
-  const CharacterLocationModel({
-    name,
-    url,
-  }) : super(
-          name: name,
-          url: url,
-        );
+  const CharacterLocationModel({name, url}) : super(name: name, url: url);
 
   factory CharacterLocationModel.fromJson(Map<String, dynamic> json) {
     return CharacterLocationModel(
-      name: json['name'] as String,
-      url: json['url'] as String,
-    );
+        name: json['name'] as String, url: json['url'] as String);
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'name': name,
-      'url': url,
-    };
+    return {'name': name, 'url': url};
   }
 }
