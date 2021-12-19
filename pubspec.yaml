@@ -43,6 +43,9 @@ dependencies:
   # To make HTTP requests
   http: ^0.13.4
 
+  # Simple Service Locator for Dart and Flutter projects
+  get_it: ^7.2.0
+
 dev_dependencies:
   # Provides API to test Flutter applications that run on real devices and emulators.
   # flutter_driver:

@@ -1,8 +1,11 @@
+import 'package:chekunov_rick_and_morty_client/di/get_it.dart' as get_it;
 import 'package:flutter/material.dart';
 
 import 'core/rick_and_morty_icon_icons.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await get_it.init();
   runApp(const MyApp());
 }
 
