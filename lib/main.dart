@@ -6,9 +6,7 @@ import 'core/rick_and_morty_icon_icons.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await get_it.init();
-  runApp(const RickAndMortyApp(
-    key: Key('RickAndMortyApp'),
-  ));
+  runApp(const RickAndMortyApp(key: Key('RickAndMortyApp')));
 }
 
 class RickAndMortyApp extends StatelessWidget {
