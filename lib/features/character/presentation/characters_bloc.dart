@@ -8,8 +8,6 @@ import 'package:equatable/equatable.dart';
 part 'characters_event.dart';
 part 'characters_state.dart';
 
-const maxPage = 42;
-
 class CharactersBloc extends Bloc<CharactersLoadEvent, CharactersState> {
   final GetCharactersByPage getCharactersByPage;
   int page = 1;
@@ -22,15 +20,28 @@ class CharactersBloc extends Bloc<CharactersLoadEvent, CharactersState> {
 
       errorOrCharacters.fold(
         (error) {
-          return emit(state.copyWith(status: CharactersStatus.failure));
+          emit(state.copyWith(status: CharactersStatus.failure));
         },
         (characters) {
           ++page;
-          return emit(state.copyWith(
-            status: CharactersStatus.success,
-            characters: characters,
-            hasReachedMaxPage: page > maxPage,
-          ));
+          if (characters.isEmpty) {
+            emit(state.copyWith(
+              status: CharactersStatus.success,
+              hasReachedMaxPage: true,
+            ));
+          } else if (state.status == CharactersStatus.initial) {
+            return emit(state.copyWith(
+              status: CharactersStatus.success,
+              characters: characters,
+              hasReachedMaxPage: false,
+            ));
+          } else {
+            emit(state.copyWith(
+              status: CharactersStatus.success,
+              characters: List.of(state.characters)..addAll(characters),
+              hasReachedMaxPage: false,
+            ));
+          }
         },
       );
     });

@@ -11,7 +11,7 @@ import 'package:chekunov_rick_and_morty_client/features/episode/domain/get_episo
 import 'package:dartz/dartz.dart';
 import 'package:test/test.dart';
 
-import '../../core/episode_inst.dart';
+import '../../core/mock_episodes_entity.dart';
 import '../../core/test_error_impl.dart';
 
 class EpisodeRepositoryImplTest implements EpisodeRepository {

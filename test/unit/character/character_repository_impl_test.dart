@@ -259,7 +259,8 @@ void main() {
         Uri.parse('https://rickandmortyapi.com/api/character/?page=100'),
         headers: {
           'Content-Type': 'application/json',
-        })).thenAnswer((_) async => http.Response('{"error":"404"', 404));
+        })).thenAnswer(
+        (_) async => http.Response('{"error":"There is nothing here"}', 200));
 
     var characterRemoteDataSource =
         CharacterRemoteDataSourceImpl(client: client);
@@ -270,6 +271,6 @@ void main() {
     var res = await characterRepositoryImpl.getCharactersByPage(100);
 
     // Assert
-    expect(res.fold((l) => l, (r) => r), ServerError());
+    expect(res.fold((l) => l, (r) => r), <CharacterModel>[]);
   });
 }

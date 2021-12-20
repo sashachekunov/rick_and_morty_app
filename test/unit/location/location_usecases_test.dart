@@ -11,7 +11,7 @@ import 'package:chekunov_rick_and_morty_client/features/location/domain/location
 import 'package:dartz/dartz.dart';
 import 'package:test/test.dart';
 
-import '../../core/location_inst.dart';
+import '../../core/mock_locations_entity.dart';
 import '../../core/test_error_impl.dart';
 
 class LocationRepositoryImplTest implements LocationRepository {

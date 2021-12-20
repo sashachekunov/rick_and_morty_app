@@ -4,6 +4,7 @@ import 'package:chekunov_rick_and_morty_client/features/character/domain/charact
 import 'package:chekunov_rick_and_morty_client/features/character/domain/get_all_characters.dart';
 import 'package:chekunov_rick_and_morty_client/features/character/domain/get_character_by_id.dart';
 import 'package:chekunov_rick_and_morty_client/features/character/domain/get_characters_by_page.dart';
+import 'package:chekunov_rick_and_morty_client/features/character/presentation/characters_bloc.dart';
 
 import 'package:chekunov_rick_and_morty_client/features/episode/data/episode_remote_data_source.dart';
 import 'package:chekunov_rick_and_morty_client/features/episode/data/episode_repository_impl.dart';
@@ -60,4 +61,5 @@ Future<void> init() async {
       () => LocationRepositoryImpl(remoteDataSource: getItInstance()));
 
   // BLoC
+  getItInstance.registerFactory(() => CharactersBloc(getItInstance()));
 }
