@@ -77,7 +77,7 @@ class CharacterRemoteDataSourceImpl implements CharacterRemoteDataSource {
           .map((character) => CharacterModel.fromJson(character))
           .toList();
     } else {
-      throw Exception(response.reasonPhrase);
+      throw ServerException();
     }
   }
 }
