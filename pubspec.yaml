@@ -105,9 +105,9 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: RickAndMortyIcon
+    - family: RickAndMortyIcons
       fonts:
-        - asset: assets/icons/RickAndMortyIcon.ttf
+        - asset: assets/icons/RickAndMortyIcons.ttf
     #     - asset: fonts/Schyler-Italic.ttf
     #       style: italic
     # - family: Trajan Pro

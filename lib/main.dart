@@ -1,10 +1,12 @@
-import 'package:chekunov_rick_and_morty_client/core/page_params.dart';
+import 'dart:async';
+
 import 'package:chekunov_rick_and_morty_client/di/get_it.dart' as get_it;
 import 'package:chekunov_rick_and_morty_client/features/character/presentation/characters_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'core/rick_and_morty_icon_icons.dart';
+import 'core/rick_and_morty_icons.dart';
+import 'features/character/domain/character_entity.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,120 +14,260 @@ void main() async {
   runApp(const RickAndMortyApp(key: Key('RickAndMortyApp')));
 }
 
+class AppColors {
+  static const Color mainBackground = Color(0xFF24282F);
+  static const Color cellBackground = Color(0xFF3C3E44);
+  static const Color greyColor = Color(0xFF333333);
+}
+
 class RickAndMortyApp extends StatelessWidget {
   const RickAndMortyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<CharactersBloc>(
-      create: (context) => get_it.getItInstance<CharactersBloc>(),
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          // This is the theme of your application.
-          //
-          // Try running your application with "flutter run". You'll see the
-          // application has a blue toolbar. Then, without quitting the app, try
-          // changing the primarySwatch below to Colors.green and then invoke
-          // "hot reload" (press "r" in the console where you ran "flutter run",
-          // or simply save your changes to "hot reload" in a Flutter IDE).
-          // Notice that the counter didn't reset back to zero; the application
-          // is not restarted.
-          primarySwatch: Colors.blue,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<CharactersBloc>(
+          create: (context) => get_it.getItInstance<CharactersBloc>()
+            ..add(const LoadCharacters()),
         ),
-        home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      ],
+      child: MaterialApp(
+        home: const HomePage(),
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData.dark().copyWith(
+          backgroundColor: AppColors.mainBackground,
+          scaffoldBackgroundColor: AppColors.cellBackground,
+        ),
       ),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
+class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Icon(
+          RickAndMortyIcons.rickAndMortyLabel,
+          size: 46,
+          color: AppColors.greyColor,
+        ),
+        centerTitle: false,
+        backgroundColor: Colors.white,
+      ),
+      body: PersonsList(),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const [
+          BottomNavigationBarItem(
+              icon: Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Icon(
+                  RickAndMortyIcons.rickAndMortyLogo,
+                  size: 20,
+                ),
+              ),
+              label: 'Characters'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.person_pin_outlined), label: 'Episodes'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.location_on_outlined), label: 'Locations'),
+        ],
+      ),
+    );
+  }
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class PersonsList extends StatelessWidget {
+  final scrollController = ScrollController();
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
+  PersonsList({Key? key}) : super(key: key);
+  void setupScrollController(BuildContext context) {
+    scrollController.addListener(() {
+      if (scrollController.position.atEdge) {
+        if (scrollController.position.pixels != 0) {
+          context.read<CharactersBloc>().add(const LoadCharacters());
+        }
+      }
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: const Icon(
-          RickAndMortyIcon.rickAndMorty,
-          color: Colors.black,
-        ),
-        centerTitle: true, //Text(widget.title),
-        // actions: const [Icon(RickAndMortyIcon.rick_and_morty)],
+    setupScrollController(context);
+
+    return BlocBuilder<CharactersBloc, CharactersState>(
+        builder: (context, state) {
+      List<CharacterEntity> persons = [];
+      bool isLoading = false;
+
+      if (state.status == CharactersStatus.initial) {
+        return _loadingIndicator();
+      } else if (state.status == CharactersStatus.success) {
+        persons = state.characters;
+        isLoading = true;
+      } else if (state.status == CharactersStatus.failure) {
+        persons = state.characters;
+        // return const Text(
+        //   'CharactersStatus.failure',
+        //   style: TextStyle(color: Colors.black, fontSize: 25),
+        // );
+      }
+      return ListView.separated(
+        controller: scrollController,
+        itemBuilder: (context, index) {
+          if (index < persons.length) {
+            return PersonCard(person: persons[index]);
+          } else {
+            Timer(const Duration(milliseconds: 30), () {
+              scrollController
+                  .jumpTo(scrollController.position.maxScrollExtent);
+            });
+            return _loadingIndicator();
+          }
+        },
+        separatorBuilder: (context, index) {
+          return Divider(
+            color: Colors.grey[400],
+          );
+        },
+        itemCount: persons.length + (isLoading ? 1 : 0),
+      );
+    });
+  }
+
+  Widget _loadingIndicator() {
+    return const Padding(
+      padding: EdgeInsets.all(8.0),
+      child: Center(
+        child: CircularProgressIndicator(),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
+    );
+  }
+}
+
+class PersonCard extends StatelessWidget {
+  final CharacterEntity person;
+
+  const PersonCard({Key? key, required this.person}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      child: Row(
+        children: [
+          Image.network(
+            person.image,
+            width: 166,
+            height: 166,
+            loadingBuilder: (BuildContext context, Widget child,
+                ImageChunkEvent? loadingProgress) {
+              if (loadingProgress == null) return child;
+              return Container(
+                height: 166,
+                width: 166,
+                color: AppColors.mainBackground,
+                child: const Center(
+                  child: CircularProgressIndicator(),
+                ),
+              );
+            },
+          ),
+          const SizedBox(
+            width: 16,
+          ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  height: 12,
+                ),
+                Text(
+                  person.name,
+                  style: const TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                const SizedBox(
+                  height: 4,
+                ),
+                Row(
+                  children: [
+                    Container(
+                      height: 8,
+                      width: 8,
+                      decoration: BoxDecoration(
+                        color: person.status == 'Alive'
+                            ? Colors.green
+                            : Colors.red,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 8,
+                    ),
+                    Expanded(
+                      child: Text(
+                        '${person.status} - ${person.species}',
+                        style: const TextStyle(color: Colors.black),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                const Text(
+                  'Last known location:',
+                  style: TextStyle(),
+                ),
+                const SizedBox(
+                  height: 4,
+                ),
+                Text(
+                  person.location.name,
+                  style: const TextStyle(color: Colors.black),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                const Text(
+                  'Origin:',
+                  style: TextStyle(),
+                ),
+                const SizedBox(
+                  height: 4,
+                ),
+                Text(
+                  person.origin.name,
+                  style: const TextStyle(color: Colors.black),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(
+            width: 12,
+          ),
+        ],
+      ),
     );
   }
 }
