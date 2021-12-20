@@ -11,7 +11,7 @@ import 'package:chekunov_rick_and_morty_client/features/character/domain/get_cha
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../core/character_inst.dart';
+import '../../core/mock_characters_entity.dart';
 import '../../core/test_error_impl.dart';
 
 class CharacterRepositoryImplTest implements CharacterRepository {

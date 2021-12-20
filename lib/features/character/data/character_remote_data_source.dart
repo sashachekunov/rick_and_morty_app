@@ -67,7 +67,12 @@ class CharacterRemoteDataSourceImpl implements CharacterRemoteDataSource {
         headers: {'Content-Type': 'application/json'});
 
     if (response.statusCode == 200) {
-      final characters = json.decode(response.body);
+      final characters = json.decode(response.body) as Map<String, dynamic>;
+
+      if (characters.containsKey('error')) {
+        return <CharacterModel>[];
+      }
+
       return (characters['results'] as List)
           .map((character) => CharacterModel.fromJson(character))
           .toList();
