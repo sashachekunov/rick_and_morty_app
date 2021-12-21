@@ -3,6 +3,7 @@ import 'package:chekunov_rick_and_morty_client/core/app_theme_colors.dart';
 import 'package:chekunov_rick_and_morty_client/core/launch_url.dart';
 import 'package:chekunov_rick_and_morty_client/core/rick_and_morty_icons.dart';
 import 'package:chekunov_rick_and_morty_client/features/character/presentation/characters_page.dart';
+import 'package:chekunov_rick_and_morty_client/features/episode/presentation/episodes_page.dart';
 
 import 'package:flutter/material.dart';
 
@@ -18,11 +19,7 @@ class _MainPageState extends State<MainPage> {
 
   final pages = [
     const CharactersPage(),
-    Center(
-        child: Text(
-      'Episodes TODO',
-      style: AppTextStyles.bottonNavigationBarTextStyle,
-    )),
+    const EpisodesPage(),
     Center(
         child: Text(
       'Locations TODO',
