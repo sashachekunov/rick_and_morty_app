@@ -12,18 +12,18 @@ class CharacterCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.all(10),
+      margin: const EdgeInsets.all(20),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(20),
       ),
-      clipBehavior: Clip.antiAliasWithSaveLayer,
+      clipBehavior: Clip.antiAlias,
       child: InkWell(
         splashColor: AppColors.selectedItem,
         onTap: () {
           debugPrint('Card tapped.');
         },
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.network(
               character.image,
@@ -34,9 +34,7 @@ class CharacterCard extends StatelessWidget {
                   height: 300,
                   width: 300,
                   color: AppColors.cardBackground,
-                  child: const Center(
-                    child: CircularProgressIndicator(),
-                  ),
+                  child: const Center(child: CircularProgressIndicator()),
                 );
               },
             ),
@@ -48,90 +46,68 @@ class CharacterCard extends StatelessWidget {
                 const SizedBox(
                   width: 16,
                 ),
-                Text(
-                  character.name,
-                  style: AppTextStyles.infoTextStyle,
-                  textAlign: TextAlign.left,
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                const SizedBox(
-                  width: 16,
-                ),
-                Container(
-                  height: 8,
-                  width: 8,
-                  decoration: BoxDecoration(
-                    color:
-                        character.status == 'Alive' ? Colors.green : Colors.red,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
-                const SizedBox(
-                  width: 8,
-                ),
                 Expanded(
-                  child: Text(
-                    '${character.status} - ${character.species}',
-                    style: const TextStyle(color: Colors.white),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        character.name,
+                        style: AppTextStyles.infoTextStyle,
+                      ),
+                      Row(
+                        children: [
+                          Container(
+                            height: 8,
+                            width: 8,
+                            decoration: BoxDecoration(
+                              color: character.status == 'Alive'
+                                  ? Colors.green
+                                  : Colors.red,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 8,
+                          ),
+                          Text(
+                            '${character.status} - ${character.species}',
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      Text(
+                        'Last known location:',
+                        style: AppTextStyles.bottonNavigationBarTextStyle,
+                      ),
+                      Text(character.location.name,
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500)),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      Text(
+                        'First seen in:',
+                        style: AppTextStyles.bottonNavigationBarTextStyle,
+                      ),
+                      Text(character.origin.name,
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500)),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                    ],
                   ),
                 ),
               ],
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            Row(
-              children: [
-                const SizedBox(
-                  width: 16,
-                ),
-                Text(
-                  'Last known location:',
-                  style: AppTextStyles.bottonNavigationBarTextStyle,
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                const SizedBox(
-                  width: 16,
-                ),
-                Text(
-                  character.location.name,
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            Row(
-              children: [
-                const SizedBox(
-                  width: 16,
-                ),
-                Text(
-                  'First seen in:',
-                  style: AppTextStyles.bottonNavigationBarTextStyle,
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                const SizedBox(
-                  width: 16,
-                ),
-                Text(
-                  character.origin.name,
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 16,
             ),
           ],
         ),
@@ -139,6 +115,100 @@ class CharacterCard extends StatelessWidget {
     );
   }
 }
+
+// const SizedBox(
+//   height: 16,
+// ),
+// Row(
+//   children: [
+//     const SizedBox(
+//       width: 16,
+//     ),
+//     Text(
+//       character.name,
+//       style: AppTextStyles.infoTextStyle,
+//       textAlign: TextAlign.left,
+//     ),
+//   ],
+// ),
+// Row(
+//   children: [
+//     const SizedBox(
+//       width: 16,
+//     ),
+//     Container(
+//       height: 8,
+//       width: 8,
+//       decoration: BoxDecoration(
+//         color:
+//             character.status == 'Alive' ? Colors.green : Colors.red,
+//         borderRadius: BorderRadius.circular(8),
+//       ),
+//     ),
+//     const SizedBox(
+//       width: 8,
+//     ),
+//     Expanded(
+//       child: Text(
+//         '${character.status} - ${character.species}',
+//         style: const TextStyle(color: Colors.white),
+//         maxLines: 1,
+//         overflow: TextOverflow.ellipsis,
+//       ),
+//     ),
+//   ],
+// ),
+// const SizedBox(
+//   height: 16,
+// ),
+// Row(
+//   children: [
+//     const SizedBox(
+//       width: 16,
+//     ),
+//     Text(
+//       'Last known location:',
+//       style: AppTextStyles.bottonNavigationBarTextStyle,
+//     ),
+//   ],
+// ),
+// Row(
+//   children: [
+//     const SizedBox(
+//       width: 16,
+//     ),
+//     Text(
+//       character.location.name,
+//     ),
+//   ],
+// ),
+// const SizedBox(
+//   height: 16,
+// ),
+// Row(
+//   children: [
+//     const SizedBox(
+//       width: 16,
+//     ),
+//     Text(
+//       'First seen in:',
+//       style: AppTextStyles.bottonNavigationBarTextStyle,
+//     ),
+//   ],
+// ),
+// Row(
+//   children: [
+//     const SizedBox(
+//       width: 16,
+//     ),
+//     Text(
+//       character.origin.name,
+//     ),
+//   ],
+// ),
+// const SizedBox(
+//   height: 16,
+// ),
 
 class PersonCard extends StatelessWidget {
   final CharacterEntity person;
