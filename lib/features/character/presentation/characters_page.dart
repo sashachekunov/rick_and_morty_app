@@ -1,4 +1,4 @@
-import 'package:chekunov_rick_and_morty_client/features/character/domain/character_entity.dart';
+import 'package:chekunov_rick_and_morty_client/core/bottom_loader.dart';
 import 'package:chekunov_rick_and_morty_client/features/character/presentation/character_card.dart';
 import 'package:chekunov_rick_and_morty_client/features/character/presentation/characters_bloc.dart';
 
@@ -14,8 +14,6 @@ class CharactersPage extends StatefulWidget {
 
 class _CharactersPageState extends State<CharactersPage> {
   final _scrollController = ScrollController();
-  var characters = <CharacterEntity>[];
-  var isLoaded = false;
 
   @override
   void initState() {
@@ -76,20 +74,5 @@ class _CharactersPageState extends State<CharactersPage> {
         context.read<CharactersBloc>().add(const LoadCharacters());
       }
     }
-  }
-}
-
-class BottomLoader extends StatelessWidget {
-  const BottomLoader({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: SizedBox(
-        height: 24,
-        width: 24,
-        child: CircularProgressIndicator(strokeWidth: 1.5),
-      ),
-    );
   }
 }
