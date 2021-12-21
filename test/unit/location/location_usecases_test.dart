@@ -1,9 +1,5 @@
 import 'package:chekunov_rick_and_morty_client/core/error.dart';
-import 'package:chekunov_rick_and_morty_client/core/id_params.dart';
-import 'package:chekunov_rick_and_morty_client/core/no_params.dart';
 import 'package:chekunov_rick_and_morty_client/core/page_params.dart';
-import 'package:chekunov_rick_and_morty_client/features/location/domain/get_all_locations.dart';
-import 'package:chekunov_rick_and_morty_client/features/location/domain/get_location_by_id.dart';
 import 'package:chekunov_rick_and_morty_client/features/location/domain/get_locations_by_page.dart';
 import 'package:chekunov_rick_and_morty_client/features/location/domain/location_entity.dart';
 import 'package:chekunov_rick_and_morty_client/features/location/domain/location_repository.dart';
@@ -43,17 +39,6 @@ class LocationRepositoryImplTest implements LocationRepository {
 }
 
 void main() {
-  test('GetAllEpisodes test', () async {
-    // Arrange
-    var locationRepository = LocationRepositoryImplTest();
-
-    // Act
-    var res = await GetAllLocations(locationRepository).call(NoParams());
-
-    // Assert
-    expect(res.fold((l) => l, (r) => r), [earthC137, abadango]);
-  });
-
   test('GetEpisodesByPage Error test', () async {
     // Arrange
     var locationRepository = LocationRepositoryImplTest();
@@ -76,28 +61,5 @@ void main() {
 
     // Assert
     expect(res.fold((l) => l, (r) => r), [earthC137, abadango]);
-  });
-
-  test('GetEpisodeById Error test', () async {
-    // Arrange
-    var locationRepository = LocationRepositoryImplTest();
-
-    // Act
-    var res =
-        await GetLocationById(locationRepository).call(const IdParams(10));
-
-    // Assert
-    expect(res.fold((l) => l, (r) => r), TestError());
-  });
-
-  test('GetEpisodeById test', () async {
-    // Arrange
-    var locationRepository = LocationRepositoryImplTest();
-
-    // Act
-    var res = await GetLocationById(locationRepository).call(const IdParams(1));
-
-    // Assert
-    expect(res.fold((l) => l, (r) => r), earthC137);
   });
 }

@@ -1,11 +1,7 @@
 import 'package:chekunov_rick_and_morty_client/core/error.dart';
-import 'package:chekunov_rick_and_morty_client/core/id_params.dart';
-import 'package:chekunov_rick_and_morty_client/core/no_params.dart';
 import 'package:chekunov_rick_and_morty_client/core/page_params.dart';
 import 'package:chekunov_rick_and_morty_client/features/character/domain/character_entity.dart';
 import 'package:chekunov_rick_and_morty_client/features/character/domain/character_repository.dart';
-import 'package:chekunov_rick_and_morty_client/features/character/domain/get_all_characters.dart';
-import 'package:chekunov_rick_and_morty_client/features/character/domain/get_character_by_id.dart';
 import 'package:chekunov_rick_and_morty_client/features/character/domain/get_characters_by_page.dart';
 
 import 'package:dartz/dartz.dart';
@@ -43,17 +39,6 @@ class CharacterRepositoryImplTest implements CharacterRepository {
 }
 
 void main() {
-  test('GetAllCharacters test', () async {
-    // Arrange
-    var characterRepository = CharacterRepositoryImplTest();
-
-    // Act
-    var res = await GetAllCharacters(characterRepository).call(NoParams());
-
-    // Assert
-    expect(res.fold((l) => l, (r) => r), [rick, morty]);
-  });
-
   test('GetCharactersByPage Error test', () async {
     // Arrange
     var characterRepository = CharacterRepositoryImplTest();
@@ -76,29 +61,5 @@ void main() {
 
     // Assert
     expect(res.fold((l) => l, (r) => r), [rick, morty]);
-  });
-
-  test('GetCharacterById Error test', () async {
-    // Arrange
-    var characterRepository = CharacterRepositoryImplTest();
-
-    // Act
-    var res =
-        await GetCharacterById(characterRepository).call(const IdParams(10));
-
-    // Assert
-    expect(res.fold((l) => l, (r) => r), TestError());
-  });
-
-  test('GetCharacterById test', () async {
-    // Arrange
-    var characterRepository = CharacterRepositoryImplTest();
-
-    // Act
-    var res =
-        await GetCharacterById(characterRepository).call(const IdParams(1));
-
-    // Assert
-    expect(res.fold((l) => l, (r) => r), rick);
   });
 }

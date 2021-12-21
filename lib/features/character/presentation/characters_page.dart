@@ -28,6 +28,8 @@ class _CharactersPageState extends State<CharactersPage> {
     return BlocBuilder<CharactersBloc, CharactersState>(
       builder: (context, state) {
         switch (state.status) {
+          case CharactersStatus.initial:
+            return const Center(child: CircularProgressIndicator());
           case CharactersStatus.failure:
             return ListView.builder(
               padding: const EdgeInsets.all(30),
@@ -54,7 +56,7 @@ class _CharactersPageState extends State<CharactersPage> {
               controller: _scrollController,
             );
           default:
-            return const Center(child: CircularProgressIndicator());
+            return const Center(child: Text('no posts'));
         }
       },
     );
