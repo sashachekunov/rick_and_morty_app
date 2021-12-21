@@ -20,28 +20,25 @@ class CharactersBloc extends Bloc<CharactersLoadEvent, CharactersState> {
 
       errorOrCharacters.fold(
         (error) {
-          emit(state.copyWith(status: CharactersStatus.failure));
+          emit(state.copyWith(
+              status: CharactersStatus.failure, hasReachedMaxPage: true));
         },
         (characters) {
           ++page;
-          if (characters.isEmpty) {
-            emit(state.copyWith(
-              status: CharactersStatus.success,
-              hasReachedMaxPage: true,
-            ));
-          } else if (state.status == CharactersStatus.initial) {
+          if (state.status == CharactersStatus.initial) {
             return emit(state.copyWith(
               status: CharactersStatus.success,
               characters: characters,
               hasReachedMaxPage: false,
             ));
-          } else {
-            emit(state.copyWith(
-              status: CharactersStatus.success,
-              characters: List.of(state.characters)..addAll(characters),
-              hasReachedMaxPage: false,
-            ));
           }
+          characters.isEmpty
+              ? emit(state.copyWith(hasReachedMaxPage: true))
+              : emit(state.copyWith(
+                  status: CharactersStatus.success,
+                  characters: List.of(state.characters)..addAll(characters),
+                  hasReachedMaxPage: false,
+                ));
         },
       );
     });

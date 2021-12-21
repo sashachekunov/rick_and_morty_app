@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.chekunov_rick_and_morty_client">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="chekunov_rick_and_morty_client"
         android:name="${applicationName}"

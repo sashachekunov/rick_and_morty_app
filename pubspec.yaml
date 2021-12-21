@@ -49,6 +49,12 @@ dependencies:
   # Flutter Widgets that make it easy to implement the BLoC (Business Logic Component) design pattern
   flutter_bloc: ^8.0.0
 
+  # Google open fonts
+  google_fonts: ^2.1.0
+
+  # To launch URLs in browser
+  url_launcher: ^6.0.17
+
 dev_dependencies:
   # Provides API to test Flutter applications that run on real devices and emulators.
   # flutter_driver:
@@ -105,9 +111,9 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: RickAndMortyIcon
+    - family: RickAndMortyIcons
       fonts:
-        - asset: assets/icons/RickAndMortyIcon.ttf
+        - asset: assets/icons/RickAndMortyIcons.ttf
     #     - asset: fonts/Schyler-Italic.ttf
     #       style: italic
     # - family: Trajan Pro

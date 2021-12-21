@@ -1,22 +1,16 @@
 import 'package:chekunov_rick_and_morty_client/features/character/data/character_remote_data_source.dart';
 import 'package:chekunov_rick_and_morty_client/features/character/data/character_repository_impl.dart';
 import 'package:chekunov_rick_and_morty_client/features/character/domain/character_repository.dart';
-import 'package:chekunov_rick_and_morty_client/features/character/domain/get_all_characters.dart';
-import 'package:chekunov_rick_and_morty_client/features/character/domain/get_character_by_id.dart';
 import 'package:chekunov_rick_and_morty_client/features/character/domain/get_characters_by_page.dart';
 import 'package:chekunov_rick_and_morty_client/features/character/presentation/characters_bloc.dart';
 
 import 'package:chekunov_rick_and_morty_client/features/episode/data/episode_remote_data_source.dart';
 import 'package:chekunov_rick_and_morty_client/features/episode/data/episode_repository_impl.dart';
 import 'package:chekunov_rick_and_morty_client/features/episode/domain/episode_repository.dart';
-import 'package:chekunov_rick_and_morty_client/features/episode/domain/get_all_episodes.dart';
-import 'package:chekunov_rick_and_morty_client/features/episode/domain/get_episode_by_id.dart';
 import 'package:chekunov_rick_and_morty_client/features/episode/domain/get_episodes_by_page.dart';
 
 import 'package:chekunov_rick_and_morty_client/features/location/data/location_remote_data_source.dart';
 import 'package:chekunov_rick_and_morty_client/features/location/data/location_repository_impl.dart';
-import 'package:chekunov_rick_and_morty_client/features/location/domain/get_all_locations.dart';
-import 'package:chekunov_rick_and_morty_client/features/location/domain/get_location_by_id.dart';
 import 'package:chekunov_rick_and_morty_client/features/location/domain/get_locations_by_page.dart';
 import 'package:chekunov_rick_and_morty_client/features/location/domain/location_repository.dart';
 
@@ -38,17 +32,9 @@ Future<void> init() async {
       () => LocationRemoteDataSourceImpl(client: getItInstance()));
 
   // UseCases
-  getItInstance.registerLazySingleton(() => GetAllCharacters(getItInstance()));
-  getItInstance.registerLazySingleton(() => GetCharacterById(getItInstance()));
   getItInstance
       .registerLazySingleton(() => GetCharactersByPage(getItInstance()));
-
-  getItInstance.registerLazySingleton(() => GetAllEpisodes(getItInstance()));
-  getItInstance.registerLazySingleton(() => GetEpisodeById(getItInstance()));
   getItInstance.registerLazySingleton(() => GetEpisodesByPage(getItInstance()));
-
-  getItInstance.registerLazySingleton(() => GetAllLocations(getItInstance()));
-  getItInstance.registerLazySingleton(() => GetLocationById(getItInstance()));
   getItInstance
       .registerLazySingleton(() => GetLocationsByPage(getItInstance()));
 

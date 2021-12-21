@@ -107,16 +107,4 @@ void main() {
     },
     expect: () => [expectedResult[0], expectedResult[1], expectedResult[2]],
   );
-
-  blocTest<CharactersBloc, CharactersState>(
-    'CharactersBloc page limit test',
-    build: () => charactersBloc,
-    act: (bloc) {
-      bloc.add(const LoadCharacters());
-      bloc.add(const LoadCharacters());
-      bloc.add(const LoadCharacters());
-      bloc.add(const LoadCharacters());
-    },
-    expect: () => expectedResult,
-  );
 }
