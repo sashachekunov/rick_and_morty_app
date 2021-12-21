@@ -14,6 +14,7 @@ import 'package:chekunov_rick_and_morty_client/features/location/data/location_r
 import 'package:chekunov_rick_and_morty_client/features/location/data/location_repository_impl.dart';
 import 'package:chekunov_rick_and_morty_client/features/location/domain/get_locations_by_page.dart';
 import 'package:chekunov_rick_and_morty_client/features/location/domain/location_repository.dart';
+import 'package:chekunov_rick_and_morty_client/features/location/presentation/locations_bloc.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:get_it/get_it.dart';
@@ -50,4 +51,5 @@ Future<void> init() async {
   // BLoC
   getItInstance.registerFactory(() => CharactersBloc(getItInstance()));
   getItInstance.registerFactory(() => EpisodesBloc(getItInstance()));
+  getItInstance.registerFactory(() => LocationsBloc(getItInstance()));
 }
