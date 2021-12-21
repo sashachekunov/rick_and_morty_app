@@ -1,17 +1,17 @@
 import 'package:chekunov_rick_and_morty_client/core/bottom_loader.dart';
-import 'package:chekunov_rick_and_morty_client/features/episode/presentation/episode_card.dart';
-import 'package:chekunov_rick_and_morty_client/features/episode/presentation/episodes_bloc.dart';
+import 'package:chekunov_rick_and_morty_client/features/location/presentation/location_card.dart';
+import 'package:chekunov_rick_and_morty_client/features/location/presentation/locations_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class EpisodesPage extends StatefulWidget {
-  const EpisodesPage({Key? key}) : super(key: key);
+class LocationsPage extends StatefulWidget {
+  const LocationsPage({Key? key}) : super(key: key);
 
   @override
-  _EpisodesPageState createState() => _EpisodesPageState();
+  _LocationsPageState createState() => _LocationsPageState();
 }
 
-class _EpisodesPageState extends State<EpisodesPage> {
+class _LocationsPageState extends State<LocationsPage> {
   final _scrollController = ScrollController();
 
   @override
@@ -22,35 +22,35 @@ class _EpisodesPageState extends State<EpisodesPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<EpisodesBloc, EpisodesState>(
+    return BlocBuilder<LocationsBloc, LocationsState>(
       builder: (context, state) {
         switch (state.status) {
-          case EpisodesStatus.initial:
+          case LocationsStatus.initial:
             return const Center(child: CircularProgressIndicator());
-          case EpisodesStatus.failure:
+          case LocationsStatus.failure:
             return ListView.builder(
               padding: const EdgeInsets.all(5),
               itemBuilder: (BuildContext context, int index) {
-                return EpisodeCard(episode: state.episodes[index]);
+                return LocationCard(location: state.locations[index]);
               },
-              itemCount: state.episodes.length,
+              itemCount: state.locations.length,
               controller: _scrollController,
             );
-          case EpisodesStatus.success:
-            if (state.episodes.isEmpty) {
+          case LocationsStatus.success:
+            if (state.locations.isEmpty) {
               return const Center(child: Text('no posts'));
             }
             return ListView.builder(
               padding: const EdgeInsets.all(5),
               controller: _scrollController,
               itemBuilder: (BuildContext context, int index) {
-                return index >= state.episodes.length
+                return index >= state.locations.length
                     ? const BottomLoader()
-                    : EpisodeCard(episode: state.episodes[index]);
+                    : LocationCard(location: state.locations[index]);
               },
               itemCount: state.hasReachedMaxPage
-                  ? state.episodes.length
-                  : state.episodes.length + 1,
+                  ? state.locations.length
+                  : state.locations.length + 1,
             );
           default:
             return const Center(child: Text('no posts'));
@@ -70,7 +70,7 @@ class _EpisodesPageState extends State<EpisodesPage> {
   void _onScroll() {
     if (_scrollController.position.atEdge) {
       if (_scrollController.position.pixels != 0) {
-        context.read<EpisodesBloc>().add(const LoadEpisodes());
+        context.read<LocationsBloc>().add(const LoadLocations());
       }
     }
   }

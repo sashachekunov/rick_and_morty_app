@@ -1,5 +1,6 @@
 import 'package:chekunov_rick_and_morty_client/core/app_theme_colors.dart';
 import 'package:chekunov_rick_and_morty_client/features/episode/presentation/episodes_bloc.dart';
+import 'package:chekunov_rick_and_morty_client/features/location/presentation/locations_bloc.dart';
 import 'package:chekunov_rick_and_morty_client/get_it.dart' as get_it;
 import 'package:chekunov_rick_and_morty_client/features/character/presentation/characters_bloc.dart';
 import 'package:chekunov_rick_and_morty_client/main_page.dart';
@@ -28,10 +29,10 @@ class RickAndMortyApp extends StatelessWidget {
           create: (context) =>
               get_it.getItInstance<EpisodesBloc>()..add(const LoadEpisodes()),
         ),
-        // BlocProvider<LocationsBloc>(
-        //   create: (context) => get_it.getItInstance<LocationsBloc>()
-        //     ..add(const LoadLocations()),
-        // ),
+        BlocProvider<LocationsBloc>(
+          create: (context) => get_it.getItInstance<LocationsBloc>()
+            ..add(const LoadLocations()),
+        ),
       ],
       child: MaterialApp(
         home: const MainPage(),
