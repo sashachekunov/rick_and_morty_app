@@ -11,27 +11,12 @@ import '../../core/mock_characters_entity.dart';
 import '../../core/test_error_impl.dart';
 
 class CharacterRepositoryImplTest implements CharacterRepository {
-  @override
-  Future<Either<AppError, List<CharacterEntity>>> getAllCharacters() async {
-    return Right([rick, morty]);
-  }
 
   @override
   Future<Either<AppError, List<CharacterEntity>>> getCharactersByPage(
       int page) async {
     if (page > 0 && page < 43) {
       return Right([rick, morty]);
-    } else {
-      return Left(TestError());
-    }
-  }
-
-  @override
-  Future<Either<AppError, CharacterEntity>> getCharacterById(int id) async {
-    if (id == 1) {
-      return Right(rick);
-    } else if (id == 2) {
-      return Right(morty);
     } else {
       return Left(TestError());
     }

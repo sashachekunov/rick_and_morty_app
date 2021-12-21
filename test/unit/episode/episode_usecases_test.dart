@@ -11,10 +11,6 @@ import '../../core/mock_episodes_entity.dart';
 import '../../core/test_error_impl.dart';
 
 class EpisodeRepositoryImplTest implements EpisodeRepository {
-  @override
-  Future<Either<AppError, List<EpisodeEntity>>> getAllEpisodes() async {
-    return Right([pilot, lawnmowerDog]);
-  }
 
   @override
   Future<Either<AppError, List<EpisodeEntity>>> getEpisodesByPage(
@@ -26,16 +22,6 @@ class EpisodeRepositoryImplTest implements EpisodeRepository {
     }
   }
 
-  @override
-  Future<Either<AppError, EpisodeEntity>> getEpisodeById(int id) async {
-    if (id == 1) {
-      return Right(pilot);
-    } else if (id == 2) {
-      return Right(lawnmowerDog);
-    } else {
-      return Left(TestError());
-    }
-  }
 }
 
 void main() {

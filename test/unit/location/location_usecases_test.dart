@@ -12,26 +12,10 @@ import '../../core/test_error_impl.dart';
 
 class LocationRepositoryImplTest implements LocationRepository {
   @override
-  Future<Either<AppError, List<LocationEntity>>> getAllLocations() async {
-    return Right([earthC137, abadango]);
-  }
-
-  @override
   Future<Either<AppError, List<LocationEntity>>> getLocationsByPage(
       int page) async {
     if (page > 0 && page < 8) {
       return Right([earthC137, abadango]);
-    } else {
-      return Left(TestError());
-    }
-  }
-
-  @override
-  Future<Either<AppError, LocationEntity>> getLocationById(int id) async {
-    if (id == 1) {
-      return Right(earthC137);
-    } else if (id == 2) {
-      return Right(abadango);
     } else {
       return Left(TestError());
     }
