@@ -1,6 +1,5 @@
 part of 'episodes_bloc.dart';
 
-
 enum EpisodesStatus { initial, success, failure }
 
 class EpisodesState extends Equatable {

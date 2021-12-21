@@ -1,6 +1,7 @@
 import 'package:chekunov_rick_and_morty_client/core/bottom_loader.dart';
 import 'package:chekunov_rick_and_morty_client/features/location/presentation/location_card.dart';
 import 'package:chekunov_rick_and_morty_client/features/location/presentation/locations_bloc.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

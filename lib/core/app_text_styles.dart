@@ -1,4 +1,5 @@
 import 'package:chekunov_rick_and_morty_client/core/app_theme_colors.dart';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

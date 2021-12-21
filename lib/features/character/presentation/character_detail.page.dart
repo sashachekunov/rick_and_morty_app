@@ -1,5 +1,6 @@
 import 'package:chekunov_rick_and_morty_client/core/app_theme_colors.dart';
 import 'package:chekunov_rick_and_morty_client/features/character/domain/character_entity.dart';
+
 import 'package:flutter/material.dart';
 
 class CharacterDetailPage extends StatelessWidget {
