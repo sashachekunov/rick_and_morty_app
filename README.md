@@ -5,13 +5,3 @@
 
 ### Дополнительное задание
 Использовать данные для создания списков серий, локаций и т.п.
-
-### Пример оформления
-
-<p float="left">
-  <img src="assets/images/main_screen.png" width="200" />
-  <img src="assets/images/character_screen.png" width="200" />
-</p>
-
-### APK выполненного задания
-https://drive.google.com/file/d/1NXtxjlm6I6teAR4AUEsX7v5ZKpSKx2NL/view?usp=sharing
