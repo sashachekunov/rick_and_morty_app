@@ -2,7 +2,7 @@
     package="com.example.chekunov_rick_and_morty_client">
     <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="chekunov_rick_and_morty_client"
+        android:label="Rick and Morty API Client"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
